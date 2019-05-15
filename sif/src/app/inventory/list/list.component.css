@@ -1,0 +1,56 @@
+tr th,
+tr td{
+    white-space: nowrap;
+}
+.table-responsive{
+    margin: auto;
+    width: auto;
+    overflow: auto;
+    height: 569px;
+}
+.thead-green th{
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+}
+.thead-green th{
+    font-weight: 100;
+    font-size: 1.15em;
+}
+.table-hover tbody tr:hover{
+    background-color: #69abf342;
+}
+.nav{
+    background-color: #e9ecef;
+}
+.nav li a{
+    color: #343a40;
+}
+.footer{
+    background-color: #28a745;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;    
+    box-shadow: 0px 1px 11px #0000009c;
+}
+.footer li a{
+    color: white;
+    font-size: x-large;
+    text-align: center;
+}
+.footer li{
+    min-width: 80px;
+}
+.footer li a span{
+    display: block;
+    font-size: x-small;
+}
+.footer-active{
+    background-color: #19732d91;
+}
+thead th { 
+    position: sticky;
+    top: 0;    
+ }

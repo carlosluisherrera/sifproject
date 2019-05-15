@@ -1,3 +1,38 @@
-<p>
-  approval works!
-</p>
+<div class="container-fluid">
+  <div class="row justify-content-center appr-row" [style.height.px]="getRowHeight()">
+    <div class="col-md-6 appr-container">
+      <ul class="nav">
+          <li class="nav-item">
+              <div class="product-name">
+                  ABAXON COM L.P. X0,5mg X30
+              </div>              
+          </li>
+          <ul class="nav justify-content-end" style="margin-left:auto!important">
+            <li class="nav-item exit-button">
+                <fa-icon [icon]='faTimes'></fa-icon>
+            </li> 
+          </ul>         
+      </ul>
+      <div class="form-container">
+        <form>
+          <div class="form-group">
+            <label for="qty">
+              Cantidad
+            </label>
+            <input type="number" class="form-control form-control-lg" name="qty" id="qty" value="18">
+          </div>
+          <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1" name="confirm" id="confirm">
+              <label for="confirm" class="form-check-labe">
+                  Confirmar
+              </label>
+            </div>
+          <div class="buttons">
+              <button class="btn btn-success">Completar</button>      
+              <button class="btn btn-primary">Omitir</button>
+          </div>
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>

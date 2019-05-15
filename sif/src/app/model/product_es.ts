@@ -1,0 +1,22 @@
+export class Product{
+    _rowNumber:number;
+    cod:number;
+    descripcion:string;
+    qty:string;
+    chequeado:boolean;
+    cantidadSistema:number;
+    numeroDeLotes:number;
+    cantidadAgr:number;
+    lastOfFirstOfNuLote:number;
+    esTroquelado:boolean;
+    fechaUltConteo:Date;
+    precio:number;
+    precioAvg:number;
+    utilidad:number;
+    cosUnit:number;
+    coBarra:string;
+    codCat:string;
+    categoria:string;
+    imprEtiq:boolean;
+    diferenciaQty:number;
+}

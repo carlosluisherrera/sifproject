@@ -1,0 +1,22 @@
+.appr-row{
+    background-color: #dee2e6;
+}
+.appr-container{
+    background-color: white;
+}
+.nav-item{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.exit-button{
+    font-size: x-large;
+    color: #6c757d;
+}
+.product-name{
+    font-size: larger;
+    margin-top: 2px;
+    font-weight: 500;
+}
+.form-group label{
+    display: block;
+}

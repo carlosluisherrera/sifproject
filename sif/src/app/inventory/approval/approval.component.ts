@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-approval',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApprovalComponent implements OnInit {
 
-  constructor() { }
+  public innerHeight:any;
+  faTimes=faTimes;
+
+  constructor(private ngZone:NgZone) { }
 
   ngOnInit() {
+    this.innerHeight = window.innerHeight;
+    window.onresize = (e) =>
+      {
+          this.ngZone.run(() => {
+              this.innerHeight = window.innerHeight;
+          });
+      };
+  }
+
+  getRowHeight():number{
+    return this.innerHeight-66;
   }
 
 }

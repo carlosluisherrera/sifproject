@@ -1,5 +1,5 @@
 .appr-row{
-    background-color: #dee2e6;
+    background-color: #e9ecefbd;
 }
 .appr-container{
     background-color: white;
@@ -11,12 +11,50 @@
 .exit-button{
     font-size: x-large;
     color: #6c757d;
+    position: absolute;
+    right: 15px;
+    top: 5px;
 }
 .product-name{
-    font-size: larger;
-    margin-top: 2px;
+    font-size: 20px;
+    margin-top: 7px;
     font-weight: 500;
+    max-width: 90%;
+}
+.form-group{
+    margin-bottom: 2rem;
 }
 .form-group label{
     display: block;
+    font-size: larger;
+}
+
+.h-division{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #f8f9fa;
+}
+.custom-control-label{
+    font-size: large;
+    width: 100%;
+}
+.custom-switch{
+    margin-left: 5px;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #28a745;
+    background-color: #28a745;
+}
+.btn-group{
+    width: calc(100% - 30px);
+    position: absolute;
+    bottom: 60px;
+}
+.btn-group button{
+    max-width: 50%;
+}
+.exit-button a{
+    color: grey;
 }

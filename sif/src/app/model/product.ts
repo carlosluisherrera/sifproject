@@ -19,4 +19,5 @@ export class Product {
     category:string;
     tag_print:boolean;
     difference_quantity:number;
+    phase: number;
 }

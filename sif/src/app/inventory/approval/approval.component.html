@@ -1,38 +1,36 @@
+<app-header></app-header>
 <div class="container-fluid">
   <div class="row justify-content-center appr-row" [style.height.px]="getRowHeight()">
-    <div class="col-md-6 appr-container">
-      <ul class="nav">
-          <li class="nav-item">
-              <div class="product-name">
-                  ABAXON COM L.P. X0,5mg X30
-              </div>              
-          </li>
-          <ul class="nav justify-content-end" style="margin-left:auto!important">
-            <li class="nav-item exit-button">
-                <fa-icon [icon]='faTimes'></fa-icon>
-            </li> 
-          </ul>         
-      </ul>
-      <div class="form-container">
-        <form>
-          <div class="form-group">
-            <label for="qty">
-              Cantidad
-            </label>
-            <input type="number" class="form-control form-control-lg" name="qty" id="qty" value="18">
-          </div>
-          <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customSwitch1" name="confirm" id="confirm">
-              <label for="confirm" class="form-check-labe">
-                  Confirmar
+    <div class="col-md-6 appr-container">      
+      <ng-container *ngIf="product">
+        <div class="product-name">
+          {{product.description}}
+        </div>
+       <div class="exit-button">
+         <a routerLink="/inventory-list"><fa-icon [icon]='faTimes'></fa-icon></a>
+       </div>
+        <hr class="h-division">      
+        <div class="form-container">
+          <form>
+            <div class="form-group">
+              <label for="qty">
+                Cantidad
               </label>
+              <input type="number" #qty class="form-control form-control-lg" name="qty" id="qty" value="{{product.quantity}}">
             </div>
-          <div class="buttons">
-              <button class="btn btn-success">Completar</button>      
-              <button class="btn btn-primary">Omitir</button>
-          </div>
-        </form>
-      </div>      
+            <div class="switch-wrapper">
+              <div class="custom-control custom-switch">
+                <input #check type="checkbox" class="custom-control-input" id="customSwitch1" (change)="toggleIsChecked()">
+                <label class="custom-control-label" for="customSwitch1">Chequeado</label>
+              </div>
+            </div>
+            <div class="btn-group" role="group">
+              <button class="btn btn-success" type="button" [disabled]="isChecked==false" (click)="complete(qty.value); check.checked=false; toggleIsChecked()"> <fa-icon [icon]="faCheckCircle"></fa-icon> Completar</button>      
+              <button class="btn btn-primary" type="button" (click)="omit(); check.checked==true? toggleIsChecked() : true; check.checked==true? check.checked=false : true;"> <fa-icon [icon]="faStopwatch"></fa-icon> Omitir</button>
+            </div>
+          </form>
+        </div>
+      </ng-container>      
     </div>
   </div>
 </div>

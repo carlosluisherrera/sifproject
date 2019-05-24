@@ -1,3 +1,4 @@
+<app-header></app-header>
 <ul class="nav nav-tabs ">
   <li class="nav-item">
     <a class="nav-link" href="#" [class.active]="active==0" (click)="toggleActive(0)">Revisión <span class="badge badge-success">{{for_revision}}</span></a>
@@ -48,7 +49,7 @@
         <td>{{product.category}}</td>
         <td>{{product.tag_print}}</td>
       </tr>
-      <tr *ngFor='let product of products'>
+      <tr *ngFor='let product of products' routerLink="/product/{{product.id}}">
         <td scope="row">{{product.code}}</td>
         <td>{{product.description}}</td>
         <td>{{product.quantity}}</td>
@@ -66,7 +67,7 @@
         <td>{{product.category}}</td>
         <td>{{product.tag_print}}</td>
         </tr>
-        <tr *ngFor='let product of products'>
+        <tr *ngFor='let product of products' routerLink="/product/{{product.id}}">
             <td scope="row">{{product.code}}</td>
             <td>{{product.description}}</td>
             <td>{{product.quantity}}</td>
@@ -84,7 +85,7 @@
             <td>{{product.category}}</td>
             <td>{{product.tag_print}}</td>
           </tr>
-          <tr *ngFor='let product of products'>
+          <tr *ngFor='let product of products' routerLink="/product/{{product.id}}">
             <td scope="row">{{product.code}}</td>
             <td>{{product.description}}</td>
             <td>{{product.quantity}}</td>
@@ -102,7 +103,7 @@
             <td>{{product.category}}</td>
             <td>{{product.tag_print}}</td>
           </tr>
-          <tr *ngFor='let product of products'>
+          <tr *ngFor='let product of products' routerLink="/product/{{product.id}}">
             <td scope="row">{{product.code}}</td>
             <td>{{product.description}}</td>
             <td>{{product.quantity}}</td>
@@ -126,12 +127,12 @@
 
 <ul class="nav footer">
   <li class="nav-item">
-    <a class="nav-link" href="#" [class.footer-active]="footer_active==0" (click)="toggleFooterActive(0)"><fa-icon [icon]="faGlobe"></fa-icon><span>Todo</span></a>
+    <a class="nav-link" (click)="changeCategory('all')" [class.footer-active]="footer_active==0" (click)="toggleFooterActive(0)"><fa-icon [icon]="faGlobe"></fa-icon><span>Todo</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" [class.footer-active]="footer_active==1" (click)="toggleFooterActive(1)"><fa-icon [icon]="faExclamationCircle"></fa-icon><span>Importante</span></a>
+    <a class="nav-link" (click)="changeCategory('important')" [class.footer-active]="footer_active==1" (click)="toggleFooterActive(1)"><fa-icon [icon]="faExclamationCircle"></fa-icon><span>Importante</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" [class.footer-active]="footer_active==2" (click)="toggleFooterActive(2)"><fa-icon [icon]="faInfoCircle"></fa-icon><span>Infrecuente</span></a>
+    <a class="nav-link" (click)="changeCategory('infrequent')" [class.footer-active]="footer_active==2" (click)="toggleFooterActive(2)"><fa-icon [icon]="faInfoCircle"></fa-icon><span>Infrecuente</span></a>
   </li>
 </ul>

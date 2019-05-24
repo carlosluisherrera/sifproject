@@ -1,0 +1,22 @@
+.register-box{
+    width: 450px;
+    height: 500px;
+    border: 1px solid #21252930;
+    border-radius: .5rem;
+    padding: 40px;
+}
+.title{
+    padding-left: 0px;
+}
+.form-row{
+    margin-top: -30px;
+}
+.errors{
+    font-size: small;
+}
+@media(max-width:420px){
+    .register-box{
+        border: none;
+        padding: 30px;
+    }
+}

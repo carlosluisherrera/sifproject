@@ -29,7 +29,7 @@ tr td{
 .footer{
     background-color: #28a745;
     justify-content: center;
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;    

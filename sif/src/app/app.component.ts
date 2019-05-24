@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { faSearch, faUser, faCaretDown, faBarcode } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,6 @@ import { faSearch, faUser, faCaretDown, faBarcode } from '@fortawesome/free-soli
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sif';
-  faSearch=faSearch;
-  faUser=faUser;
-  faCaretDown=faCaretDown;
-  faBarcode=faBarcode;
+  header:boolean=true;
+
 }

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">
+    <img src="assets/logo_round.png" width="60" height="40" class="d-inline-block align-top" alt="">
+    <span class="brand-title">Inventario<span class="dropdown-symbol"><fa-icon [icon]="faCaretDown"></fa-icon></span></span>
+  </a>
+  <ul class="nav justify-content-right" style="margin-left: auto!important;">
+    <li class="nav-item">
+      <a class="nav-link nav-icon icon-barcode" href="#"><fa-icon [icon]="faBarcode"></fa-icon></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-icon" href="#"><fa-icon [icon]="faSearch"></fa-icon></a>
+    </li>
+    <span class="separator"></span>
+    <li class="nav-item">
+      <div ngbDropdown class="d-inline-block">
+          <a class="nav-link nav-icon" id="dropdownBasic1" ngbDropdownToggle style="color: #28a745;"><fa-icon [icon]="faUser"></fa-icon></a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem type="button" (click)="logout()">Cerrar sesión</button>
+          </div>
+        </div>
+    </li>      
+  </ul>
+</nav>

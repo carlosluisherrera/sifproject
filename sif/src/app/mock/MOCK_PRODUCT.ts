@@ -21,7 +21,8 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"214",
         category:	"PSICOTROPICOS",
         tag_print:	false,
-        difference_quantity: 0
+        difference_quantity: 0,
+        phase: 1
     },
     {
         id:2,
@@ -43,7 +44,8 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"2",
         category:	"MEDICINAS",
         tag_print:	false,
-        difference_quantity: 0
+        difference_quantity: 0,
+        phase: 1
     },
     {
         id:3,
@@ -65,11 +67,12 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"2",
         category:	"MEDICINAS",
         tag_print:	false,
-        difference_quantity: 0
+        difference_quantity: 0,
+        phase: 1
     },
     {
-        id:3,
-        code:8153,
+        id:4,
+        code:92187,
         description:"TERAGRIP 24 HORAS TAB 650MG FRACCION",
         quantity: 86,
         checked:  false, 
@@ -87,6 +90,7 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"212600",
         category:	"O.T.C.",
         tag_print:	false,
-        difference_quantity: 0
+        difference_quantity: 0,
+        phase: 1
     }
 ];

@@ -1,0 +1,40 @@
+.brand-title{
+    margin-left: 10px;
+    font-weight: 400;
+    color: #495057;
+    vertical-align: middle;
+}
+.separator{
+    width: 1px; 
+    height: 40px;
+    background-color: rgb(237, 241, 242);
+}
+.dropdown-symbol{
+    font-size: initial;
+    padding-left: 5px;
+    color: #6c757d;
+}
+.nav-icon{
+    font-size: large;
+    color: #28a745;
+}
+.nav-icon:hover{
+    color:green;
+}
+.icon-barcode{
+    font-size: larger;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+.dropdown-item.active,
+.dropdown-item:active{
+    background-color: #f8f9fa;
+    color: black;
+}
+
+@media (max-width: 400px) {
+    .brand-title {
+      display: none;
+    }
+  }

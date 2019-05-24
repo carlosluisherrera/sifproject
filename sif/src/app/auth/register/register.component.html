@@ -1,3 +1,33 @@
-<p>
-  register works!
-</p>
+<div class="container-fluid">
+  <div class="row justify-content-center" [style.height.px]="getRowHeight()">
+    <div class="register-box" [style.margin-top.px]="innerWidth > 400 ? getMargin() : true">
+      <span class="sif-brand"><img src="assets/logo_round.png" width="60" height="40"></span>
+      <div class="title" style="padding-left:0px">Registro de cuenta</div>
+      <div class="errors" *ngIf="errors[0]">{{errors[0]}}</div>
+      <form (keyup)="checkValid(name.value, user.value, password.value, pass_confirm.value)" (keypress)="(isValid && $event.which==13) ? register(name.value, user.value ,password.value, pass_confirm.value) : true">
+        <div class="name form-input">
+            <input #name type="text" class="form-control" name="name" id="name" required>
+            <label for="name">Nombre</label>
+        </div>
+        <div class="name form-input">
+            <input #user type="text" class="form-control" name="user" id="user" required>
+            <label for="user">Nombre de usuario</label>
+        </div>
+        <div class="form-row">
+            <div class="col name form-input">
+                <input #password type="password" class="form-control" name="pw1" id="pw1" required>
+                <label for="pw1">Contraseña</label>
+            </div>
+            <div class="col lastname form-input">
+                <input #pass_confirm type="password" class="form-control" name="pw2" id="pw2" required>
+                <label for="pw2">Confirmación</label>
+            </div>
+          </div>
+        <div class="login-or-register" >
+          <a routerLink="/login">Ya tengo una cuenta</a>
+          <div class="right-align"><button type="button" class="btn btn-success" [disabled]="!isValid" (click)="register(name.value, user.value ,password.value, pass_confirm.value)">Registrarse</button></div>
+        </div>
+      </form>
+    </div>    
+  </div>
+</div>

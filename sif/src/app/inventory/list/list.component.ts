@@ -22,11 +22,12 @@ export class ListComponent implements OnInit {
   faExclamationCircle=faExclamationCircle;
   faInfoCircle=faInfoCircle;
   public innerHeight: any;
+  category:string='all';
 
   constructor( private productService: ProductService, private ngZone:NgZone ) { }
 
   ngOnInit() {
-    this.productService.get().subscribe(products => this.products = products);
+    this.productService.get().subscribe(products => {this.products = products});
     this.innerHeight = window.innerHeight;
     window.onresize = (e) =>
       {
@@ -35,6 +36,8 @@ export class ListComponent implements OnInit {
           });
       };   
   }
+
+  
 
   toggleActive(index:number):void{
     this.active = index;
@@ -48,4 +51,7 @@ export class ListComponent implements OnInit {
     return this.innerHeight-175;
   }
 
+  changeCategory(category:string){
+    this.category=category;
+  }
 }

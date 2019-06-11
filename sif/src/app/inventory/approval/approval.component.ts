@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/model/product';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-approval',
@@ -14,15 +15,20 @@ export class ApprovalComponent implements OnInit {
 
   public innerHeight:any;
   faTimes=faTimes;
-  faCheckCircle=faCheckCircle;
+  faCheckCircle=faCheckCircle;  
   faStopwatch=faStopwatch;
   isChecked:boolean;
   product: Product;
   products: Product[];
   nextProduct: Product;
   id:number;
+  nextUrl:string;
+  tourEnded:boolean;
+  currentUser:string;
+  public now:Date = new Date();
+  isApproval:boolean;
 
-  constructor(private ngZone:NgZone, private route: ActivatedRoute, private productService: ProductService, private router: Router) { }
+  constructor(private userService:UserService, private ngZone:NgZone, private route: ActivatedRoute, private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.isChecked=false;
@@ -35,10 +41,15 @@ export class ApprovalComponent implements OnInit {
       };
       this.getProduct();
       this.getNextProduct();
+      this.getCurrentUser();
   }
 
   getRowHeight():number{
     return this.innerHeight-66;
+  }
+
+  getCurrentUser(){
+    this.userService.getUser(localStorage.getItem('user')).subscribe(user=>this.currentUser=user.full_name);
   }
 
   toggleIsChecked():void{
@@ -54,24 +65,54 @@ export class ApprovalComponent implements OnInit {
     this.productService.get().subscribe(products => this.products = products);
   }
 
-  getNextProduct(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    const category = this.route.snapshot.paramMap.get('category');
-    const phase = +this.route.snapshot.paramMap.get('phase');
-
+  getNextProduct(): void {    
     this.route.params.subscribe(params=>{ 
-      this.productService.getNextProduct(params.id).subscribe(products => {this.nextProduct = products[0]});
+      const phase = (params.phase == 'revision') ? 1 : 2;
+      this.isApproval = (phase == 2 ) ? true : false; 
+      this.productService.getNextProduct(params.id, params.category, phase).subscribe(products => {
+        if (products[0]) {
+          this.nextProduct = products[0];
+          this.nextUrl = `${params.phase}/${params.category}/${this.nextProduct.id}`;
+        }
+        else this.nextUrl=null;               
+      });
      })
     
   }
-  complete(quantity:number){
+  revise(quantity:number){
     this.product.quantity=quantity;
-    this.product.phase=1;
+    this.product.checked=true;
+    this.product.checked_by=this.currentUser;
+    this.product.quantity_difference=this.product.quantity-this.product.quantity_on_system;
+    this.product.checked_time=this.now.toLocaleString();
+    this.product.phase=2;
     this.productService.update(this.product).subscribe(product=>{
-      this.router.navigate([`product/${this.nextProduct.id}`])
+      if (this.nextUrl){
+        this.router.navigate([this.nextUrl]);
+      }
+      else{
+        this.tourEnded=true;
+      }      
+    });
+  }
+  approve(quantity:number){
+    if(quantity!=this.product.quantity){
+      this.product.quantity=quantity;
+      this.product.checked_by=this.currentUser;
+      this.product.quantity_difference=this.product.quantity-this.product.quantity_on_system;
+      this.product.checked_time=this.now.toLocaleString();
+    }
+    this.product.approved=true;
+    this.productService.update(this.product).subscribe(product=>{
+      if (this.nextUrl){
+        this.router.navigate([this.nextUrl]);
+      }
+      else{
+        this.tourEnded=true;
+      }      
     });
   }
   omit(){
-    this.router.navigate([`product/${this.nextProduct.id}`]);
+    this.router.navigate([this.nextUrl]);
   }    
 }

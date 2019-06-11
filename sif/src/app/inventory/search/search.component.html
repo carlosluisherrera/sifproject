@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div class="row justify-content-center cc">
+  <div class="col search-container" [style.height.px]="getContentSize()">
+    <div class="title">Búsqueda de Productos</div>
+    <div class="search-bar">
+      <input type="text" #searchBox (input)="search(searchBox.value)" placeholder="Introduce descripción o código de barra">
+      <fa-icon [icon]='faSearch'></fa-icon>
+    </div>
+    <div class="sub-text">
+      Resultados
+    </div>
+    <div class="result-container" [style.max-height.px]="getResultContainerSize()" *ngIf="results$">
+      <div class="result" *ngFor="let result of results$ | async" routerLink="/revision/all/{{result.id}}">
+        <div class="product-head row">
+          <div class="product-name col-9">
+            {{result.description}}
+          </div>          
+          <div class="product-status col-3">
+            <span class="badge" [class.badge-primary]="result.phase == 1" [class.badge-success]="result.phase != 1">{{result.phase == 1 ? 'No revisado' : 'Revisado'}}</span>
+          </div>          
+        </div>
+        <div class="product-barcode">
+          {{result.barcode}}
+        </div>
+        <div class="info">
+          En sistema: {{result.quantity_on_system}}
+        </div>
+        <div class="info" *ngIf="result.phase!=1">
+          Inventariado: {{result.quantity}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@
 }
 .appr-container{
     background-color: white;
+    max-width: 550px;
 }
 .nav-item{
     margin-right: 5px;
@@ -57,4 +58,25 @@
 }
 .exit-button a{
     color: grey;
+}
+.revision-container{
+    padding: 15px;
+    background: #17b872;
+    border-radius: 10px;
+    color: #f8f9fa;
+    margin-bottom: 25px;
+}
+.revision-title{
+    font-size: 1.5em;
+}
+.tour-ended h1{
+    font-size: 3.2rem;
+    color: #28a745;
+}
+.tour-ended{
+    text-align: center;
+}
+.tour-ended div{
+    color: grey;
+    font-size: 1.1rem;
 }

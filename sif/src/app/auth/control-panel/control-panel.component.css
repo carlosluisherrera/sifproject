@@ -1,0 +1,60 @@
+.panel-container{
+    background-color: white;
+    max-width: 550px;
+}
+.cc{
+    margin: 0;
+    background-color: #e9ecefbd;
+}
+.col{
+    padding: 10px;
+}
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #f8f9fa;
+}
+select {
+    word-wrap: normal;
+    padding: 5px;
+    width: 100%;
+    color: grey;
+    outline: none;
+}
+table td{
+    color: #383d41;
+}
+option:hover {
+    box-shadow: 0 0 10px 100px #f8f9fa inset;
+}
+.button-container{
+    text-align: right;
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    right: 0px;
+    padding-right: 15px;
+}
+.button-container button{
+    width: 150px;
+}
+.table-responsive{
+    max-height: calc(100% - 90px);
+}
+.table .thead-dark th {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #454d55;
+}
+thead th{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+@media(max-width:400px){
+    table{
+        font-size: small;
+    }
+    button{
+        max-width: 100px;
+    }
+}

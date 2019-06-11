@@ -1,8 +1,9 @@
-.brand-title{
+.brand-title, .brand-title a{
     margin-left: 10px;
     font-weight: 400;
     color: #495057;
     vertical-align: middle;
+    text-decoration: none;
 }
 .separator{
     width: 1px; 
@@ -13,6 +14,7 @@
     font-size: initial;
     padding-left: 5px;
     color: #6c757d;
+    cursor: pointer;
 }
 .nav-icon{
     font-size: large;
@@ -33,8 +35,8 @@
     color: black;
 }
 
-@media (max-width: 400px) {
-    .brand-title {
+@media (max-width: 500px) {
+    .brand-title .btt{
       display: none;
     }
   }

@@ -3,34 +3,59 @@
   <div class="row justify-content-center appr-row" [style.height.px]="getRowHeight()">
     <div class="col-md-6 appr-container">      
       <ng-container *ngIf="product">
-        <div class="product-name">
-          {{product.description}}
-        </div>
-       <div class="exit-button">
-         <a routerLink="/inventory-list"><fa-icon [icon]='faTimes'></fa-icon></a>
-       </div>
-        <hr class="h-division">      
-        <div class="form-container">
-          <form>
-            <div class="form-group">
-              <label for="qty">
-                Cantidad
-              </label>
-              <input type="number" #qty class="form-control form-control-lg" name="qty" id="qty" value="{{product.quantity}}">
-            </div>
-            <div class="switch-wrapper">
-              <div class="custom-control custom-switch">
-                <input #check type="checkbox" class="custom-control-input" id="customSwitch1" (change)="toggleIsChecked()">
-                <label class="custom-control-label" for="customSwitch1">Chequeado</label>
+        <ng-container *ngIf="!tourEnded; else tourEndedView">
+            <div class="product-name">
+                {{product.description}}
               </div>
+             <div class="exit-button">
+               <a routerLink="/inventory-list"><fa-icon [icon]='faTimes'></fa-icon></a>
+             </div>
+              <hr class="h-division">
+              <div *ngIf='product.checked && isApproval' class="revision-container">
+                <h3 class="revision-title">Detalles de la revisión</h3>
+                <div class="revision-row">En sistema: {{product.quantity_on_system}}</div>
+                <div class="revision-row">Inventariado: {{product.quantity}} ({{product.quantity_difference > 0 ? '+'+product.quantity_difference : product.quantity_difference}})</div>
+                <div class="revision-row">Autor: {{product.checked_by}}</div>
+                <div class="revision-row">Fecha: {{product.checked_time}}</div>
+                
+              </div>      
+              <div class="form-container">
+                <form>
+                  <div class="form-group">
+                    <label for="qty">
+                      {{product.checked && isApproval ? 'Modificar:' : 'Cantidad' }}
+                    </label>
+                    <input type="number" #qty class="form-control form-control-lg" name="qty" id="qty" value="{{product.quantity}}">
+                  </div>
+                  <div class="switch-wrapper">
+                    <div class="custom-control custom-switch">
+                      <input #check type="checkbox" class="custom-control-input" id="customSwitch1" (change)="toggleIsChecked()">
+                      <label class="custom-control-label" for="customSwitch1">{{product.checked && isApproval ? 'Listo' : 'Chequeado' }}</label>
+                    </div>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <ng-container *ngIf="!isApproval; else approvalButtons">
+                      <button class="btn btn-success" type="button" [disabled]="isChecked==false" (click)="revise(qty.value); check.checked=false; toggleIsChecked()"><fa-icon [icon]="faCheckCircle"></fa-icon> Completar</button>      
+                      <button class="btn btn-primary" type="button" (click)="omit(); check.checked==true? toggleIsChecked() : true; check.checked==true? check.checked=false : true;"><fa-icon [icon]="faStopwatch"></fa-icon> Omitir</button>
+                    </ng-container>
+                    <ng-template #approvalButtons>
+                      <button class="btn btn-success" type="button" [disabled]="isChecked==false" (click)="approve(qty.value); check.checked=false; toggleIsChecked()"><fa-icon [icon]="faCheckCircle"></fa-icon> Completar</button>      
+                      <button class="btn btn-primary" type="button" (click)="omit(); check.checked==true? toggleIsChecked() : true; check.checked==true? check.checked=false : true;"><fa-icon [icon]="faStopwatch"></fa-icon> Omitir</button>
+                    </ng-template>
+                  </div>
+                </form>
+              </div>
+        </ng-container>        
+      </ng-container>
+      <ng-template #tourEndedView>
+          <div class="exit-button">
+              <a routerLink="/inventory-list"><fa-icon [icon]='faTimes'></fa-icon></a>
             </div>
-            <div class="btn-group" role="group">
-              <button class="btn btn-success" type="button" [disabled]="isChecked==false" (click)="complete(qty.value); check.checked=false; toggleIsChecked()"> <fa-icon [icon]="faCheckCircle"></fa-icon> Completar</button>      
-              <button class="btn btn-primary" type="button" (click)="omit(); check.checked==true? toggleIsChecked() : true; check.checked==true? check.checked=false : true;"> <fa-icon [icon]="faStopwatch"></fa-icon> Omitir</button>
-            </div>
-          </form>
+        <div class="tour-ended" [style.margin-top.px]="((innerHeight-93)/2)-66">
+          <h1><span><fa-icon [icon]='faCheckCircle'></fa-icon></span> ¡Terminado!</h1>
+          <div>No quedan más productos en esta categoría</div>
         </div>
-      </ng-container>      
+      </ng-template>      
     </div>
   </div>
 </div>

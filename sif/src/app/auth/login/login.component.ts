@@ -10,7 +10,6 @@ import { stringify } from '@angular/core/src/util';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   public innerHeight: any;
   public innerWidth: any;
   isValid:boolean=false;
@@ -20,6 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(private ngZone:NgZone, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('user')) 
+    {this.router.navigate(['/inventory-list']);}
     this.innerHeight = window.innerHeight;
     this.innerWidth = window.innerWidth;
     window.onresize = (e) =>
@@ -59,6 +60,6 @@ export class LoginComponent implements OnInit {
         } else 
             this.errors.push('Usuario o contraseña incorrectos')
       });
-  }
+  } 
 
 }

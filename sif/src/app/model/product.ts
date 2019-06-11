@@ -18,6 +18,9 @@ export class Product {
     category_code:string;
     category:string;
     tag_print:boolean;
-    difference_quantity:number;
+    quantity_difference:number;
     phase: number;
+    checked_by?:string;
+    checked_time?:string;
+    approved?:boolean;
 }

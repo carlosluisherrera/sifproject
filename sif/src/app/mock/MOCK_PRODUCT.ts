@@ -21,7 +21,7 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"214",
         category:	"PSICOTROPICOS",
         tag_print:	false,
-        difference_quantity: 0,
+        quantity_difference: 0,
         phase: 1
     },
     {
@@ -44,7 +44,7 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"2",
         category:	"MEDICINAS",
         tag_print:	false,
-        difference_quantity: 0,
+        quantity_difference: 0,
         phase: 1
     },
     {
@@ -67,7 +67,7 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"2",
         category:	"MEDICINAS",
         tag_print:	false,
-        difference_quantity: 0,
+        quantity_difference: 0,
         phase: 1
     },
     {
@@ -90,7 +90,7 @@ export const MOCK_PRODUCTS:Product[]=[
         category_code:	"212600",
         category:	"O.T.C.",
         tag_print:	false,
-        difference_quantity: 0,
+        quantity_difference: 0,
         phase: 1
     }
 ];

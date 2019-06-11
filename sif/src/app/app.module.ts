@@ -13,6 +13,8 @@ import { ListComponent } from './inventory/list/list.component';
 import { ApprovalComponent } from './inventory/approval/approval.component';
 import { HeaderComponent } from './structural/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SearchComponent } from './inventory/search/search.component';
+import { ControlPanelComponent } from './auth/control-panel/control-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,9 @@ import { AppRoutingModule } from './app-routing.module';
     RegisterComponent,
     ListComponent,
     ApprovalComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent,
+    ControlPanelComponent
   ],
   imports: [    
     NgbModule,

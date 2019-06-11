@@ -26,6 +26,9 @@ tr td{
 .nav li a{
     color: #343a40;
 }
+.nav-tabs .nav-item{
+    cursor: pointer;
+}
 .footer{
     background-color: #28a745;
     justify-content: center;
@@ -54,3 +57,50 @@ thead th {
     position: sticky;
     top: 0;    
  }
+ .qty-diff{
+    text-align: center;
+    color: white;
+    font-weight: 700;
+ }
+ .checked{
+     display: block;
+     width: 100%;
+     text-align: center;
+     color: #28a745;
+ }
+ .approved{
+    background-color: #28a74538;
+ }
+ .no-products-message{
+     color: #28a745;
+     text-align: center;
+ }
+ @media(max-width: 420px){
+     .no-products-message h1{
+         font-size: 3.5em;
+     }
+ }
+ @media(min-width: 420px){
+    .no-products-message h1{
+        font-size: 4.5em;
+    }
+}
+ .no-products-message div{
+     color: grey;
+     font-size: 0.9em;
+ }
+ .adjustment{
+    position: absolute;
+    right: 20px;
+    bottom: 100px;
+    background: #28a745;
+    padding: 8px 20px;
+    font-size: xx-large;
+    border-radius: 100px;
+    color: white;
+ }
+ .adjustment:hover{
+     background-color: #228438;
+ }
+ tbody{
+    border-bottom: 1px solid #8080802e;}

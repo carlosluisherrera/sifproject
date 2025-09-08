@@ -2,7 +2,6 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
-import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-login',

@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap, filter } from 'rxjs/operators';
 import { faSmileBeam } from '@fortawesome/free-solid-svg-icons';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'aplication/json' }) }
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
 
 
 @Injectable({

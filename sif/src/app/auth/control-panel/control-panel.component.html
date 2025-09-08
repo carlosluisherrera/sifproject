@@ -2,26 +2,28 @@
 <div class="row justify-content-center cc">
   <div class="col panel-container" [style.height.px]="getContentSize()">
     <div class="table-responsive">
-      <table class="table table-borderless table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th>Usuario</th>
-            <th>Permiso</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users; let index=i">
-            <td>{{user.full_name}}</td>
-            <td>
-              <select #levels (change)="updateUser(user, levels.value)" value="{{user.level}}">
-                <option value="0">Visitante</option>
-                <option value="1">Asistente</option>
-                <option value="2">Administrador</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <perfect-scrollbar [config]="config">
+        <table class="table table-borderless table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>Usuario</th>
+              <th>Permiso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let index=i">
+              <td>{{user.full_name}}</td>
+              <td>
+                <select #levels (change)="updateUser(user, levels.value)" value="{{user.level}}">
+                  <option value="0">Visitante</option>
+                  <option value="1">Asistente</option>
+                  <option value="2">Administrador</option>
+                </select>
+              </td>
+            </tr>            
+          </tbody>
+        </table>
+      </perfect-scrollbar>
     </div>
     <div class="button-container">
       <button type="button" class="btn btn-success" (click)="saveChanges()">Guardar</button>

@@ -92,15 +92,19 @@ thead th {
  .adjustment{
     position: absolute;
     right: 20px;
-    bottom: 100px;
+    bottom: 20px;
     background: #28a745;
     padding: 8px 20px;
     font-size: xx-large;
     border-radius: 100px;
     color: white;
+
  }
  .adjustment:hover{
      background-color: #228438;
  }
  tbody{
     border-bottom: 1px solid #8080802e;}
+#th-button:hover{
+    background-color: #228438;
+}

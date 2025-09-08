@@ -1,6 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/model/user';
+import { PerfectScrollbarConfigInterface,
+  PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 
 @Component({
   selector: 'app-control-panel',
@@ -12,6 +14,8 @@ export class ControlPanelComponent implements OnInit {
   public innerHeight:any;
   users:User[];
   usersToUpdate:User[]=[];
+
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 
   constructor( private ngZone: NgZone, private userService:UserService ) { }
 
@@ -36,7 +40,6 @@ export class ControlPanelComponent implements OnInit {
   }
 
   updateUser(user:User, level:number){
-    // const index=this.users.indexOf(user);
     user.level=level;
     this.usersToUpdate.push(user);
   }
@@ -46,8 +49,7 @@ export class ControlPanelComponent implements OnInit {
       let user=this.usersToUpdate[i];
       this.userService.update(user).subscribe(res=> console.log(`${user} updated`));
     }
-    
-    
+    this.usersToUpdate=[];
   }
 
 }

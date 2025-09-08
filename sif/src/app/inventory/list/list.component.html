@@ -8,109 +8,113 @@
   </li>
 </ul>
 
-<div class="table-responsive" [style.height.px]="getTableHeight()">
-  <table class="table table-striped table-hover">
-    <thead class="thead-green">
-        <ng-container *ngIf="selectedPhase==='revision'; else approvalHeader">
-          <tr>
-            <th scope="col">Cod</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Numero de lotes</th>
-            <th scope="col">LastOfFirstOfNuLote</th>
-            <th scope="col">EsTroquelado</th>
-            <th scope="col">FechaUltConteo</th>
-            <th scope="col">Precio</th>
-            <th scope="col">PrecioAvg</th>
-            <th scope="col">Utilidad</th>
-            <th scope="col">CosUnit</th>
-            <th scope="col">CoBarra</th>
-            <th scope="col">CodCat</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">ImprEtiq</th>
-          </tr>
-      </ng-container>
-      <ng-template #approvalHeader>
-          <tr>
-              <th scope="col"><fa-icon [icon]="faCheckSquare"></fa-icon></th>
-              <th scope="col">Cod</th>
-              <th scope="col">CoBarra</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col">En sistema</th>
-              <th scope="col">Diferencia</th>
-              <th scope="col">Chequeado</th>
-              <th scope="col">Autor</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Numero de lotes</th>
-              <th scope="col">LastOfFirstOfNuLote</th>
-              <th scope="col">EsTroquelado</th>
-              <th scope="col">FechaUltConteo</th>
-              <th scope="col">Precio</th>
-              <th scope="col">PrecioAvg</th>
-              <th scope="col">Utilidad</th>
-              <th scope="col">CosUnit</th>
-              <th scope="col">CodCat</th>
-              <th scope="col">Categoría</th>
-              <th scope="col">ImprEtiq</th>
-            </tr>
-      </ng-template>
-    </thead>
-    <tbody>
-      <ng-container *ngIf="selectedPhase==='revision'; else approvalView">
-        <tr *ngFor='let product of for_revision_products' routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">
-          <td scope="row">{{product.code}}</td>
-          <td>{{product.description}}</td>
-          <td>{{product.quantity}}</td>
-          <td>{{product.slot_count}}</td>
-          <td>{{product.lastOfFirstOfNuLote}}</td>
-          <td>{{product.is_die_cut}}</td>
-          <td>{{product.last_counting_date}}</td>
-          <td>{{product.price}}</td>
-          <td>{{product.avg_price}}</td>
-          <td>{{product.utility}}</td>
-          <td>{{product.unity_cost}}</td>
-          <td>{{product.barcode}}</td>
-          <td>{{product.category_code}}</td>
-          <td>{{product.category}}</td>
-          <td>{{product.tag_print}}</td>
-        </tr>
-      </ng-container>
-      <ng-template #approvalView>
-          <tr *ngFor='let product of for_approval_products' [style.background]="product.approved ? '#28a74538' : 'transparent'">
-            <td scope="row"><input type="checkbox" #check (change)='toggleApproved(product, check.checked)' [checked]='product.approved'></td>
-              <td>{{product.code}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.barcode}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.description}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.quantity}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.quantity_on_system}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}" [style.background]='getBgColor(product.quantity_difference)' class="qty-diff">{{product.quantity_difference > 0 ? '+'+product.quantity_difference : product.quantity_difference}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}"><span *ngIf='product.checked' class="checked"><fa-icon [icon]='faCheckCircle'></fa-icon></span></td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.checked_by}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.checked_time}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.slot_count}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.lastOfFirstOfNuLote}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.is_die_cut}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.last_counting_date}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.price}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.avg_price}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.utility}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.unity_cost}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.category_code}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.category}}</td>
-              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.tag_print}}</td>
-          </tr>
-      </ng-template>
-    </tbody>
-  </table>
-  <div class='no-products-message' [style.margin-top.px]="(innerHeight/2)-200" *ngIf='(selectedPhase==="revision" && !for_revision) || (selectedPhase==="approval" && !for_approval)'>
-    <h1><fa-icon [icon]='faClipboardList'></fa-icon> ¡Vaya!</h1>
-    <div>No hay productos que mostrar en esta pestaña</div>
-  </div>
-  <div class="adjustment" *ngIf='selectedPhase==="approval" && for_approval && boxesChecked' (click)="sendData()"> 
-    <fa-icon [icon]='faClipboardCheck'></fa-icon>
-  </div>
-</div>
+	
+		<div class="table-responsive" [style.height.px]="getTableHeight()" >
+		<perfect-scrollbar [config]="config" [scrollIndicators]="true">
+		  <table class="table table-striped table-hover">
+		    <thead class="thead-green">
+		        <ng-container *ngIf="selectedPhase==='revision'; else approvalHeader">
+		          <tr>
+		            <th scope="col">Cod</th>
+		            <th scope="col">Descripción</th>
+		            <th scope="col">Cantidad</th>
+		            <th scope="col">Numero de lotes</th>
+		            <th scope="col">LastOfFirstOfNuLote</th>
+		            <th scope="col">EsTroquelado</th>
+		            <th scope="col">FechaUltConteo</th>
+		            <th scope="col">Precio</th>
+		            <th scope="col">PrecioAvg</th>
+		            <th scope="col">Utilidad</th>
+		            <th scope="col">CosUnit</th>
+		            <th scope="col">CoBarra</th>
+		            <th scope="col">CodCat</th>
+		            <th scope="col">Categoría</th>
+		            <th scope="col">ImprEtiq</th>
+		          </tr>
+		      </ng-container>
+		      <ng-template #approvalHeader>
+		          <tr>
+		              <th scope="col" id="th-button" (click)="selectAll()"><fa-icon [icon]="faCheckSquare"></fa-icon></th>
+		              <th scope="col">Cod</th>
+		              <th scope="col">CoBarra</th>
+		              <th scope="col">Descripción</th>
+		              <th scope="col">Cantidad</th>
+		              <th scope="col">En sistema</th>
+		              <th scope="col">Diferencia</th>
+		              <th scope="col">Chequeado</th>
+		              <th scope="col">Autor</th>
+		              <th scope="col">Fecha</th>
+		              <th scope="col">Numero de lotes</th>
+		              <th scope="col">LastOfFirstOfNuLote</th>
+		              <th scope="col">EsTroquelado</th>
+		              <th scope="col">FechaUltConteo</th>
+		              <th scope="col">Precio</th>
+		              <th scope="col">PrecioAvg</th>
+		              <th scope="col">Utilidad</th>
+		              <th scope="col">CosUnit</th>
+		              <th scope="col">CodCat</th>
+		              <th scope="col">Categoría</th>
+		              <th scope="col">ImprEtiq</th>
+		            </tr>
+		      </ng-template>
+		    </thead>
+		    <tbody>
+		      <ng-container *ngIf="selectedPhase==='revision'; else approvalView">
+		        <tr *ngFor='let product of for_revision_products' routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">
+		          <td scope="row">{{product.code}}</td>
+		          <td>{{product.description}}</td>
+		          <td>{{product.quantity}}</td>
+		          <td>{{product.slot_count}}</td>
+		          <td>{{product.lastOfFirstOfNuLote}}</td>
+		          <td>{{product.is_die_cut}}</td>
+		          <td>{{product.last_counting_date}}</td>
+		          <td>{{product.price}}</td>
+		          <td>{{product.avg_price}}</td>
+		          <td>{{product.utility}}</td>
+		          <td>{{product.unity_cost}}</td>
+		          <td>{{product.barcode}}</td>
+		          <td>{{product.category_code}}</td>
+		          <td>{{product.category}}</td>
+		          <td>{{product.tag_print}}</td>
+		        </tr>
+		      </ng-container>
+		      <ng-template #approvalView>
+		          <tr *ngFor='let product of for_approval_products' [style.background]="product.approved ? '#28a74538' : 'transparent'">
+		            <td scope="row"><input type="checkbox" #check (change)='toggleApproved(product, check.checked)' [checked]='product.approved'></td>
+		              <td>{{product.code}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.barcode}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.description}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.quantity}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.quantity_on_system}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}" [style.background]='getBgColor(product.quantity_difference)' class="qty-diff">{{product.quantity_difference > 0 ? '+'+product.quantity_difference : product.quantity_difference}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}"><span *ngIf='product.checked' class="checked"><fa-icon [icon]='faCheckCircle'></fa-icon></span></td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.checked_by}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.checked_time}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.slot_count}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.lastOfFirstOfNuLote}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.is_die_cut}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.last_counting_date}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.price}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.avg_price}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.utility}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.unity_cost}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.category_code}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.category}}</td>
+		              <td routerLink="/{{selectedPhase}}/{{selectedCategory}}/{{product.id}}">{{product.tag_print}}</td>
+		          </tr>
+		      </ng-template>
+		    </tbody>
+		  </table>
+		  <div class='no-products-message' [style.margin-top.px]="(innerHeight/2)-200" *ngIf='(selectedPhase==="revision" && !for_revision) || (selectedPhase==="approval" && !for_approval)'>
+		    <h1><fa-icon [icon]='faClipboardList'></fa-icon> ¡Vaya!</h1>
+		    <div>No hay productos que mostrar en esta pestaña</div>
+		  </div>
+		  <div class="adjustment" *ngIf='selectedPhase==="approval" && for_approval && boxesChecked' (click)="sendData()"> 
+		    <fa-icon [icon]='faClipboardCheck'></fa-icon>
+		  </div>
+		</perfect-scrollbar>
+		</div>
+	
 
 <ul class="nav footer">
   <li class="nav-item">

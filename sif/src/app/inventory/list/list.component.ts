@@ -1,11 +1,15 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { Product } from '../../model/product';
-import { faGlobe, faExclamationCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faExclamationCircle, faInfoCircle, faGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from 'src/app/services/product.service';
 import { faCheckCircle, faCheckSquare, faClipboardList, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { ProductControl } from 'src/app/model/product_control';
 import { ProductControlService } from 'src/app/services/product-control.service';
 import { UserService } from 'src/app/services/user.service';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import { NotificationService } from 'src/app/services/notification.service';
+
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -35,7 +39,9 @@ export class ListComponent implements OnInit {
   isAdmin:boolean;
   boxesChecked:boolean;
 
-  constructor( private userService:UserService, private productControlService: ProductControlService, private productService: ProductService, private ngZone:NgZone ) { }
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+
+  constructor( private messageService:NotificationService, private userService:UserService, private productControlService: ProductControlService, private productService: ProductService, private ngZone:NgZone ) { }
 
   ngOnInit() {
     this.setIsAdmin();
@@ -132,7 +138,25 @@ export class ListComponent implements OnInit {
       }
     }
     let result=JSON.stringify(this.productControl);
-    console.log(result);
-    this.productControlService.send(result);
+    this.messageService.add(`Se ha${this.productControl.length==1 ? '' : 'n'} enviado ${this.productControl.length} entrada${this.productControl.length==1 ? '' : 's'}`)
+    this.productControlService.send(result, this.productControl.length);
+    this.productControl=[];
+    this.productService.resetProducts(this.for_approval_products).subscribe(_=>{this.getProducts()});
   }  
+
+  selectAll():void{
+    let products=this.for_approval_products;
+    //checks first on list status
+    let action = this.for_approval_products[0].approved ? false : true;
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
+      product.approved=action;
+      if (i == products.length-1){
+        this.productService.update(product).subscribe(_=>{this.checkBox()})  
+      }else{
+        this.productService.update(product).subscribe();
+      }
+      
+    }
+  }
 }

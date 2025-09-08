@@ -38,7 +38,7 @@ option:hover {
     width: 150px;
 }
 .table-responsive{
-    max-height: calc(100% - 90px);
+    height: calc(100% - 90px);
 }
 .table .thead-dark th {
     color: #fff;

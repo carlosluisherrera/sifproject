@@ -34,13 +34,14 @@
 .result{
     margin-top: 15px;
     padding: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px #0000002e;
     cursor: pointer;
     outline: none;
 }
 .result-container{
-    overflow-y: auto;
     margin: 0px -15px;
     padding: 5px 20px;
 }

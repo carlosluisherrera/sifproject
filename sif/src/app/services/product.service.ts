@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Product } from '../model/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap, filter } from 'rxjs/operators';
+import { faSmileBeam } from '@fortawesome/free-solid-svg-icons';
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'aplication/json' }) }
 
@@ -40,6 +41,24 @@ export class ProductService {
       map(products=> products.filter(prods => prods.description.includes(term.toUpperCase()) || prods.barcode.includes(term))),
       catchError(this.handleError<Product[]>('searchProduct', []))
     );
+  }
+  resetProducts(products: Product[]):Observable<any>{
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
+      product.approved=false;
+      product.checked=false;
+      product.checked_by=null;
+      product.checked_time=null;
+      product.last_counting_date=new Date().toLocaleString();
+      product.phase=1;
+      if(i == products.length-1)
+      {
+        return this.update(product); 
+      }
+      else{
+        this.update(product).subscribe();
+      }
+    }
   }
 
   private handleError<T> (operation:string, result?: T) {

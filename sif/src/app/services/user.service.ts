@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import {NotificationService} from './notification.service';
 
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'aplication/json' }) }
@@ -15,7 +16,7 @@ export class UserService {
 
   private url = 'api/users';
 
-  constructor( private http:HttpClient ) { }
+  constructor( private http:HttpClient, private messageService: NotificationService ) { }
 
   getUser(id:string): Observable<User>{
     return this.http.get<User>(`${this.url}/${id}`);
@@ -24,7 +25,9 @@ export class UserService {
     return this.http.post<User>(this.url, user, httpOptions);
   }
   update(user: User): Observable<any>{
-    return this.http.put<User>(this.url, user, httpOptions);
+    return this.http.put<User>(this.url, user, httpOptions).pipe(
+      tap(_ => {this.messageService.add(`El usuario ${user.full_name} ha sido actualizado`)})
+    );
   }  
   delete(user: User | number ): Observable<User>{
     const id = typeof user === 'number' ? user : user.id;

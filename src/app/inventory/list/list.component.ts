@@ -39,7 +39,7 @@ export class ListComponent implements OnInit {
   isAdmin:boolean;
   boxesChecked:boolean;
 
-  @ViewChild(PerfectScrollbarComponent, { static: false }) componentRef?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 
   constructor( private messageService:NotificationService, private userService:UserService, private productControlService: ProductControlService, private productService: ProductService, private ngZone:NgZone ) { }
 

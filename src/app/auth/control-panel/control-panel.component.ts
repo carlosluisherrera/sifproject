@@ -15,7 +15,7 @@ export class ControlPanelComponent implements OnInit {
   users:User[];
   usersToUpdate:User[]=[];
 
-  @ViewChild(PerfectScrollbarComponent, { static: false }) componentRef?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 
   constructor( private ngZone: NgZone, private userService:UserService ) { }
 

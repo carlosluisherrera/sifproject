@@ -14,6 +14,7 @@ export class ControlPanelComponent implements OnInit {
   public innerHeight:any;
   users:User[];
   usersToUpdate:User[]=[];
+  config: PerfectScrollbarConfigInterface = {};
 
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 

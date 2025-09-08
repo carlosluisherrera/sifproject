@@ -6,7 +6,7 @@ import { faCheckCircle, faCheckSquare, faClipboardList, faClipboardCheck } from 
 import { ProductControl } from 'src/app/model/product_control';
 import { ProductControlService } from 'src/app/services/product-control.service';
 import { UserService } from 'src/app/services/user.service';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarComponent, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NotificationService } from 'src/app/services/notification.service';
 
 
@@ -38,6 +38,7 @@ export class ListComponent implements OnInit {
   productControl:ProductControl[]=[];
   isAdmin:boolean;
   boxesChecked:boolean;
+  config: PerfectScrollbarConfigInterface = {};
 
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 

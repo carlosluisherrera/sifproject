@@ -23,16 +23,16 @@
     "@angular/router": "10.2.5",
     "@fortawesome/angular-fontawesome": "^0.7.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
-    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.6.0",
     "core-js": "^2.5.4",
     "jw-bootstrap-switch-ng2": "^2.0.5",
     "ngx-perfect-scrollbar": "^8.0.0",
     "ngx-scrollbar": "^4.2.0",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1002.4",

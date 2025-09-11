@@ -16,6 +16,6 @@ export class NotificationService {
 }
  
   clear() {
-    this.subject.next();
+  this.subject.next(undefined);
   }
 }

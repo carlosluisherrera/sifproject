@@ -10,7 +10,7 @@
 
 	
 		<div class="table-responsive" [style.height.px]="getTableHeight()" >
-		<perfect-scrollbar [config]="config" [scrollIndicators]="true">
+		<ng-scrollbar [visibility]="'hover'" [style.height.%]="100">
 		  <table class="table table-striped table-hover">
 		    <thead class="thead-green">
 		        <ng-container *ngIf="selectedPhase==='revision'; else approvalHeader">
@@ -112,7 +112,7 @@
 		  <div class="adjustment" *ngIf='selectedPhase==="approval" && for_approval && boxesChecked' (click)="sendData()"> 
 		    <fa-icon [icon]='faClipboardCheck'></fa-icon>
 		  </div>
-		</perfect-scrollbar>
+		</ng-scrollbar>
 		</div>
 	
 

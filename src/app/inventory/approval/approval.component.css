@@ -4,6 +4,7 @@
 .appr-container{
     background-color: white;
     max-width: 550px;
+    position: relative;
 }
 .nav-item{
     margin-right: 5px;

@@ -2,7 +2,7 @@
 <div class="row justify-content-center cc">
   <div class="col panel-container" [style.height.px]="getContentSize()">
     <div class="table-responsive">
-      <perfect-scrollbar [config]="config">
+  <ng-scrollbar [visibility]="'hover'">
         <table class="table table-borderless table-hover">
           <thead class="thead-dark">
             <tr>
@@ -23,7 +23,7 @@
             </tr>            
           </tbody>
         </table>
-      </perfect-scrollbar>
+  </ng-scrollbar>
     </div>
     <div class="button-container">
       <button type="button" class="btn btn-success" (click)="saveChanges()">Guardar</button>

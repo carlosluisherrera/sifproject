@@ -1,8 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/model/user';
-import { PerfectScrollbarConfigInterface,
-  PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-control-panel',
@@ -14,8 +13,8 @@ export class ControlPanelComponent implements OnInit {
   public innerHeight:any;
   users:User[];
   usersToUpdate:User[]=[];
-
-  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+  // If you need to reference the scrollbar, use:
+  // @ViewChild(NgScrollbar) scrollbar?: NgScrollbar;
 
   constructor( private ngZone: NgZone, private userService:UserService ) { }
 

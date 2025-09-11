@@ -1,14 +1,12 @@
-import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Product } from '../../model/product';
-import { faGlobe, faExclamationCircle, faInfoCircle, faGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
-import { ProductService } from 'src/app/services/product.service';
-import { faCheckCircle, faCheckSquare, faClipboardList, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { ProductControl } from 'src/app/model/product_control';
+import { ProductService } from 'src/app/services/product.service';
 import { ProductControlService } from 'src/app/services/product-control.service';
 import { UserService } from 'src/app/services/user.service';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
 import { NotificationService } from 'src/app/services/notification.service';
-
+import { faGlobe, faExclamationCircle, faInfoCircle, faGrinTongueSquint, faCheckCircle, faCheckSquare, faClipboardList, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list',
@@ -39,7 +37,7 @@ export class ListComponent implements OnInit {
   isAdmin:boolean;
   boxesChecked:boolean;
 
-  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+
 
   constructor( private messageService:NotificationService, private userService:UserService, private productControlService: ProductControlService, private productService: ProductService, private ngZone:NgZone ) { }
 

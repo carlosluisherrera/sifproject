@@ -10,7 +10,7 @@
       Resultados
     </div>
     <div class="result-container" [style.height.px]="getResultContainerSize()" *ngIf="results$">
-      <perfect-scrollbar [config]="config" [scrollIndicators]="true">
+  <ng-scrollbar [visibility]="'hover'">
         <div class="result" *ngFor="let result of results$ | async" routerLink="/revision/all/{{result.id}}">
           <div class="product-head row">
             <div class="product-name col-9">
@@ -30,7 +30,7 @@
             Inventariado: {{result.quantity}}
           </div>
         </div>
-      </perfect-scrollbar>
+  </ng-scrollbar>
     </div>
   </div>
 </div>
